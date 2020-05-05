@@ -29,7 +29,7 @@ In the file of the view where you want to call the widget you can use it in the 
 ```php
 use app\widgets\formsets\FormsetsWidget;
 
-// Normal select with ActiveForm & model
+// A form to wrap the widget
 $form = ActiveForm::begin();
 
 echo FormsetsWidget::widget([
