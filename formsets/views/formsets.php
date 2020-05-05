@@ -109,8 +109,8 @@ if($titulo) echo '<h2>'.Html::encode($titulo).'</h2>';
         ?>
         <tr>
             <td colspan="7">
-                <button id="btn-add-item-to-widget-formset-jogerq-<?= $rand ?>" type="button" class="btn btn-primary" pos="0">Añadir Fila</button>
-                <button type="button" class="btn btn-danger eliminar-seleccionados" id="eliminar-seleccionados-<?= $rand ?>">Eliminar Seleccionados</button>
+                <button id="btn-add-item-to-widget-formset-jogerq-<?= $rand ?>" type="button" class="btn btn-primary" pos="0"><?= Yii::t('app','Add row') ?></button>
+                <button type="button" class="btn btn-danger eliminar-seleccionados" id="eliminar-seleccionados-<?= $rand ?>"><?= Yii::t('app','Delete selected rows') ?></button>
                 <input type="hidden" id="total-registros-widget-formset-jogerq-<?= $rand ?>" name="posicion" value="<?= count($models) ?>">
             </td>
         </tr>
