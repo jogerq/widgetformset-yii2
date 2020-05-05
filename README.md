@@ -2,6 +2,7 @@
     <br>
     widgetformset-yii2
     <hr>
+    This is a widget for make a tabular form with a CRUD on a table for YII2
 </h1>
 
 This widget allows creating a tabular form with the functionalities of entering, consulting, modifying and deleting records. Includes the necessary javascript and storage functions to be called from the controller.
