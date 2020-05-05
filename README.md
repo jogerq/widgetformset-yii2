@@ -90,6 +90,10 @@ public function actionFacturation()
 }
 
 ```
+## Demo
+You can see what look in the next image: <br>
+<img src="https://raw.githubusercontent.com/jogerq/widgetformset-yii2/master/demo.png">
+
 ## License
 
 **yii2-widget-select2** is released under the BSD-3-Clause License. See the bundled `LICENSE.md` for details.
