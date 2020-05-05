@@ -12,13 +12,13 @@ The preferred way to install this widget is by downloading it and placing the do
 
 Once the downloaded directory is located inside app \ widgets we proceed to make the following configuration within the config / web.php file in the components section:
 
-'components' => [
-    ...
-    'formsetjogerq' => [
-        'class' => 'app\widgets\formsets\controllers\WidgetformsetjogerqComponent',
-    ],
-    ...
- ]
+'components' => [ <br>
+    ... <br>
+    'formsetjogerq' => [ <br>
+        'class' => 'app\widgets\formsets\controllers\WidgetformsetjogerqComponent', <br>
+    ], <br>
+    ... <br>
+ ] <br>
 
  That is all to install
 
@@ -64,6 +64,29 @@ echo FormsetsWidget::widget([
 ]);
 
 ActiveForm::end(); 
+
+```
+In the controller you can use the function of component that was installed in your config/web.php. Follow the instructions below
+
+```php
+
+public function actionFacturation()
+{
+	// Gets models and data submitted
+    [$modelsFacturacion,$postFacturaEvaluar] = Yii::$app->formsetjogerq->getModels('\app\models\Facturacion');
+    // Validate the forms with the models
+    if(Model::loadMultiple($modelsFacturacion, (isset($postFacturaEvaluar) ? $postFacturaEvaluar : [])) && Model::validateMultiple($modelsFacturacion)) {
+        // Save the forms in the model. If the record exist, it wil be update. If the record no exist it wil be delete from database
+        Yii::$app->formsetjogerq->saveModels($modelsFacturacion,'facturacion','cod_proyecto','id');
+        // Set menssage	for
+        Yii::$app->session->setFlash('success','Correctly Stored Data');
+        return $this->redirect(['facturacion']);
+    }
+    
+    return $this->render('index', [
+        'modelsFacturacion' => $modelsFacturacion
+    ]);   
+}
 
 ```
 ## License
