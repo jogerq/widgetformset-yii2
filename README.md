@@ -12,15 +12,15 @@ This widget allows creating a tabular form with the functionalities of entering,
 The preferred way to install this widget is by downloading it and placing the downloaded directory inside the widgets directory found in the basic application template.
 
 Once the downloaded directory is located inside app \ widgets we proceed to make the following configuration within the config / web.php file in the components section:
-
-'components' => [ <br>
-    ... <br>
-    'formsetjogerq' => [ <br>
-        'class' => 'app\widgets\formsets\controllers\WidgetformsetjogerqComponent', <br>
-    ], <br>
-    ... <br>
- ] <br>
-
+```
+'components' => [
+    ...
+    'formsetjogerq' => [
+        'class' => 'app\widgets\formsets\controllers\WidgetformsetjogerqComponent',
+    ],
+    ...
+ ]
+```
  That is all to install
 
 ## Usage
