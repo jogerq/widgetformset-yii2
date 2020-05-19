@@ -12,8 +12,10 @@ class WidgetformsetjogerqComponent extends Component {
 		$postFacturaEvaluar = [];
 		$name = explode("\\", $model);
         $className = end($name);
-		if(!Yii::$app->request->post($className)) 
+		if(!Yii::$app->request->post($className)) {
             $modelsFacturacion = $model::find()->all();
+            if(!$modelsFacturacion) $modelsFacturacion = [new $model()];
+        }
         else {
         	$modeDB =  new $model();
         	$primaryKey = isset($modeDB->tableSchema->primaryKey[0]) ? $modeDB->tableSchema->primaryKey[0] : null;
