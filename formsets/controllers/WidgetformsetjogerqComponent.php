@@ -47,10 +47,11 @@ class WidgetformsetjogerqComponent extends Component {
             $model->save(false);
             $ids[] = $model->id;
         }
-        //ELIMINAMOS LOS REGISTROS
+        //we delete the records
         $and = '';
-        if($ids) $and = "AND $primaryKey NOT IN (".implode(',',$ids).")";
-        Yii::$app->db->createCommand("DELETE FROM $table WHERE $campo = ".$valorForeingKey." $and")->execute();
+        $and = $valorForeingKey || $campo ? " WHERE $campo=$valorForeingKey " : '';
+        $and = ($ids && $and) ? $and." AND $primaryKey NOT IN (".implode(',',$ids).")" : ((!$and && $ids) ? " WHERE $primaryKey NOT IN (".implode(',',$ids).")" : '');
+        Yii::$app->db->createCommand("DELETE FROM $table $and")->execute();
 	}
 }
 

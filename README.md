@@ -73,17 +73,18 @@ In the controller you can use the function of component that was installed in yo
 
 public function actionFacturation()
 {
-	// Gets models and data submitted
-    [$modelsFacturacion,$postFacturaEvaluar] = Yii::$app->formsetjogerq->getModels('\app\models\Facturacion');
-    // Validate the forms with the models
-    if(Model::loadMultiple($modelsFacturacion, (isset($postFacturaEvaluar) ? $postFacturaEvaluar : [])) && Model::validateMultiple($modelsFacturacion)) {
-        // Save the forms in the model. If the record exist, it wil be update. If the record no exist it wil be delete from database
-        Yii::$app->formsetjogerq->saveModels($modelsFacturacion,'facturacion','cod_proyecto','id');
-        // Set menssage	for
-        Yii::$app->session->setFlash('success','Correctly Stored Data');
+	[$modelsFacturacion,$postFacturaEvaluar] = Yii::$app->formsetjogerq->getModels('\app\models\Facturacion',[]);
+    if ((\yii\base\Model::loadMultiple($modelsFacturacion, (isset($postFacturaEvaluar) ? $postFacturaEvaluar : [])) || empty($modelsFacturacion)) && (\yii\base\Model::validateMultiple($modelsFacturacion) || empty($postFacturaEvaluar))) {
+        // This is the name of foreign key field . If there is not foreign key you must use null
+        $codForeignkey = 'cod_proyecto'; // $codForeignkey = null;
+        // This is the code of a foreign key in the table. If there is not a foreign key you must use null value
+        $codValueForeignkey = 1; // $codValueForeignkey = null;
+        Yii::$app->formsetjogerq->saveModels($modelsFacturacion,'facturacion',$codForeignkey,$codValueForeignkey,'id');
+        //Yii::$app->formsetjogerq->saveModels($modelsPorcentaje,'porcentaje','cod_politica',nu,'id');
+        Yii::$app->session->setFlash('success','Datos Almacenados Correctamente');
         return $this->redirect(['facturacion']);
     }
-    
+
     return $this->render('index', [
         'modelsFacturacion' => $modelsFacturacion
     ]);   
