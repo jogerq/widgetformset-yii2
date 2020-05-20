@@ -7,7 +7,7 @@ $number_format = isset($number_format) ? $number_format : ['decimals' => 2 , 'de
 $sums = [];
 
 foreach ($models as $posModel => $model):
-    if($model->errors) print_r($model->errors,true);
+    //if($model->errors) print_r($model->errors,true);
 ?>
     <tr id="tr-pos-formsets-facturacion-<?= $trToRepite ? 'change-position-widget-formset-jogerq-'.$rand : $posModel.'-'.$rand; ?>'">
         <td style="display: none;">
@@ -24,6 +24,7 @@ foreach ($models as $posModel => $model):
              * SI EXISTE UN CAMPO codForeignKey PROCEDEMOS A ESCRIBIRLO AQUÍ COMO UN HIDDEN
              */
             if($codForeignKey && is_array($codForeignKey) && isset($codForeignKey['field']) && isset($codForeignKey['value'])) {
+                
                 $model->{$codForeignKey['field']} = $codForeignKey['value'];
                 echo Html::activeHiddenInput($model,"[".($trToRepite ? 'change-position-widget-formset-jogerq' : $posModel)."]{$codForeignKey['field']}");
             }
